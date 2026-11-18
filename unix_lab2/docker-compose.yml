@@ -1,0 +1,12 @@
+services:
+  worker:
+    build: .
+    volumes:
+      - shared_volume:/shared
+    deploy:
+      replicas: 50
+    restart: unless-stopped
+
+volumes:
+  shared_volume:
+    external: true
