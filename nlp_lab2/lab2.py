@@ -16,14 +16,14 @@ def normalize_word(w):
     return w
 
 while True:
-    pos_input = input("pos: ").strip()
+    pos_input = input("pos: ").strip().split()
     if pos_input == "":
         break
-    neg_input = input("neg: ").strip()
+    neg_input = input("neg: ").strip().split()
     if neg_input == "":
         break
-    pos = [normalize_word(pos_input)]
-    neg = [normalize_word(neg_input)]
+    pos = [normalize_word(word) for word in pos_input]
+    neg = [normalize_word(word) for word in neg_input]
 
     dist = word2vec.most_similar(positive=pos, negative=neg, topn=2000)
     words = [w for w, _ in dist if pat.match(w)]
